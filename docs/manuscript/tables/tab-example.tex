@@ -1,0 +1,20 @@
+% Example shared table fragment. Include with \input{../tables/tab-example}
+% (from docs/manuscript/vN/sections/*.tex).  Delete once real tables exist.
+% Conventions: caption ABOVE (booktabs, no vertical rules), \label{tab:...},
+% and a "Source" note naming the figure the values come from.
+\begin{table}[htbp]
+  \centering
+  \caption{Observed TTL for each record type in \code{typst.app} (example fragment).}
+  \label{tab:example}
+  \begin{tabular}{@{}llr@{}}
+    \toprule
+    Type & Name & TTL (s) \\
+    \midrule
+    NS   & \code{typst.app.} & 4076 \\
+    A    & \code{typst.app.} & 300  \\
+    \bottomrule
+  \end{tabular}
+
+  \smallskip
+  \footnotesize Source: \cref{fig:capture-overview}.
+\end{table}

@@ -1,0 +1,57 @@
+% ============================================================
+%  Manuscript v2: DNS Servers with BIND (revised after review of v1)
+%  Build: latexmk   (see ./latexmkrc)   ->   build/main.pdf
+%  Shared by all manuscript versions:  ../figures/  ../tables/
+% ============================================================
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{arxiv}                 % vendored in docs/common/ (found via TEXINPUTS)
+\input{../../common/preamble}      % shared packages and macros
+
+% ---------- Shared resources ----------
+\graphicspath{{../figures/}}
+\addbibresource{../../../bibliography.bib}
+
+% ---------- Team data (edit) ----------
+\newcommand{\teamname}{Team 1}
+\newcommand{\coursename}{Applications of Cryptography and Cybersecurity}
+\newcommand{\institution}{Tecnol\'ogico de Monterrey, Monterrey Campus}
+\newcommand{\professor}{Mohd Anas Wajid}
+
+\title{DNS Servers with BIND: Authoritative and Recursive Configuration, Root Hints, and Traffic Analysis}
+\renewcommand{\headeright}{\teamname\ --- Technical report}
+\renewcommand{\undertitle}{\coursename\ --- \institution}
+\renewcommand{\shorttitle}{DNS Servers with BIND}
+
+\author{%
+  El\'ias Alejandro Corral Rodr\'iguez \\ A01743624
+  \And
+  Jannette Cristina Flores Rodr\'iguez \\ A01255711
+  \And
+  Angel Eduardo Luna \\ A00842657
+  \And
+  Montserrat Rodr\'iguez Ram\'irez \\ A01661271
+  \And
+  Carolina Sarah\'i S\'anchez Meneses \\ A00227980
+}
+\date{Professor: \professor \quad\textbullet\quad \today}
+
+\hypersetup{pdftitle={DNS Servers with BIND}, pdfauthor={\teamname}}
+
+\begin{document}
+\maketitle
+
+\input{sections/00-abstract}
+% \tableofcontents   % uncomment if the course requires a Contents page
+
+\input{sections/01-introduction}
+\input{sections/02-bind}
+\input{sections/03-configuration}
+\input{sections/04-root-hints}
+\input{sections/05-traffic-analysis}
+\input{sections/06-results}
+\input{sections/07-conclusions}
+\input{sections/08-references}         % unnumbered
+\input{sections/09-ai-declaration}     % unnumbered
+
+\end{document}

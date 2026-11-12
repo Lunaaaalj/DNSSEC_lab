@@ -1,0 +1,16 @@
+# latexmk configuration for this document.
+# Build:  cd docs/manuscript/v2 && latexmk        (or `make manuscript` at the repo root)
+# Output: build/main.pdf  (all artifacts, including the PDF, go to build/)
+
+@default_files = ('main.tex');
+
+$pdf_mode   = 1;          # pdflatex
+$out_dir    = 'build';
+$aux_dir    = 'build';
+$bibtex_use = 2;          # run biber when needed; delete .bbl only with -C
+
+$pdflatex = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# Shared template files (arxiv.sty, preamble.tex) live in docs/common/.
+# Trailing "//" searches subdirectories; the final ":" keeps the default paths.
+$ENV{TEXINPUTS} = '../../common//:' . ($ENV{TEXINPUTS} // '');
