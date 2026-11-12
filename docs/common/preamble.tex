@@ -1,0 +1,76 @@
+% ============================================================
+%  Shared preamble for every LaTeX document in this repository.
+%  Usage (after \usepackage{arxiv}):   \input{../../common/preamble}
+%  Each document sets its own \graphicspath and \addbibresource.
+% ============================================================
+
+% ---------- Encoding, typography ----------
+% No lmodern: arxiv.sty selects Times (ptm) as the roman family.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+
+% ---------- Tables, figures, code ----------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+
+% Caption rules requested in the review (v1 feedback #1):
+%   tables  -> caption ABOVE the table
+%   figures -> caption below the figure
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, labelsep=period}
+\captionsetup[table]{position=top}
+\captionsetup[figure]{position=bottom}
+
+% ---------- Links and cross-references ----------
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+% Use \cref{fig:...}, \cref{tab:...}, \cref{sec:...} for EVERY float/section
+% mention (never type "Figure 3" by hand; review feedback #3, #8).
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+
+% ---------- Bibliography (biblatex + biber, APA) ----------
+\usepackage{csquotes}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+% \addbibresource{...} is set in each main.tex (path depends on depth).
+
+% ---------- Code listings ----------
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{black!4},
+  frame=single,
+  rulecolor=\color{black!25},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=0.8em,
+  belowskip=0.8em,
+}
+
+% ---------- Helper macros ----------
+% Pending item, visible in the draft (replaces Typst's #todo).
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[TO DO: #1]}}}
+
+% Unnumbered section that still appears in the table of contents.
+% Use for "References" and "Declaration of AI Use" (review feedback #7).
+\newcommand{\unnumberedsection}[1]{%
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}%
+}
+
+% Inline code
+\newcommand{\code}[1]{\texttt{#1}}
