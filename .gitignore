@@ -1,0 +1,20 @@
+# LaTeX build output: every document builds into <doc>/build/ (PDF included)
+build/
+
+# Stray LaTeX artifacts (only appear if someone compiles outside latexmk)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+
+# OS / editor
+.DS_Store
