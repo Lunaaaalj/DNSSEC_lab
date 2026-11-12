@@ -1,0 +1,42 @@
+{
+  "name": "DNSSEC lab (LaTeX)",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80,
+        "editor.rulers": [80],
+        "latex-workshop.latex.outDir": "%DIR%/build",
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.latex.recipe.default": "first",
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk (uses the document's latexmkrc)",
+            "tools": ["latexmk"]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": ["%DOC_EXT%"],
+            "env": {}
+          }
+        ],
+        "latex-workshop.latex.rootFile.doNotPrompt": true,
+        "latex-workshop.view.pdf.viewer": "tab",
+        "latex-workshop.latex.clean.subfolder.enabled": true
+      }
+    }
+  }
+}
