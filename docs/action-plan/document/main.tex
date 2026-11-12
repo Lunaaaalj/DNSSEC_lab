@@ -1,0 +1,54 @@
+% ============================================================
+%  Action plan: addressing the review feedback of manuscript v1
+%  Build: latexmk   (see ./latexmkrc)   ->   build/main.pdf
+%  Notes this document is written from:  ../*.md
+% ============================================================
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{arxiv}                 % vendored in docs/common/ (found via TEXINPUTS)
+\input{../../common/preamble}      % shared packages and macros
+
+% ---------- Resources ----------
+% Own figures first, then the shared manuscript figures (no duplication).
+\graphicspath{{figures/}{../../manuscript/figures/}}
+\addbibresource{../../../bibliography.bib}
+
+% ---------- Team data (edit) ----------
+\newcommand{\teamname}{Team 1}
+\newcommand{\coursename}{Applications of Cryptography and Cybersecurity}
+\newcommand{\institution}{Tecnol\'ogico de Monterrey, Monterrey Campus}
+
+\title{Action Plan for the Revision of the BIND and DNS Analysis Report}
+\renewcommand{\headeright}{\teamname\ --- Action plan}
+\renewcommand{\undertitle}{\coursename\ --- \institution}
+\renewcommand{\shorttitle}{Action Plan}
+
+\author{%
+  El\'ias Alejandro Corral Rodr\'iguez \\ A01743624
+  \And
+  Jannette Cristina Flores Rodr\'iguez \\ A01255711
+  \And
+  Angel Eduardo Luna \\ A00842657
+  \And
+  Montserrat Rodr\'iguez Ram\'irez \\ A01661271
+  \And
+  Carolina Sarah\'i S\'anchez Meneses \\ A00227980
+}
+\date{\today}
+
+\hypersetup{pdftitle={Action Plan}, pdfauthor={\teamname}}
+
+\begin{document}
+\maketitle
+
+\input{sections/01-overview-feedback}
+\input{sections/02-audit}
+\input{sections/03-captions-numbering}
+\input{sections/04-references}
+\input{sections/05-screenshot-highlights}
+\input{sections/06-conclusion-and-backmatter}
+\input{sections/07-timeline-checklist}
+
+\input{sections/08-references}         % unnumbered
+
+\end{document}
