@@ -1,0 +1,15 @@
+Please make sure you write table captions on top of the table.
+
+Please include references at every place where you mention information either within the paragraph or after.
+
+Try to number the screenshots as Figures and mention in text the figure numbers wherever you have used them in the text.
+
+Wherever you mention information in tables do make sure you have mentioned the figure number from where I can refer to the values mentioned in the table. eg. Table 7 etc.
+
+Also if possible you can highlight within screenshot for better readability.
+
+Try to write conclusion in paragraphs.
+
+Do not number the reference section and declaration of AI use.
+
+Make sure all figures and tables are cited in text.
