@@ -29,6 +29,22 @@ Manuscript audited: `docs/manuscript/v1/main.typ` (10 figures, 9 tables, 0 label
 
 Items 3, 4 and 8 are the same job in practice: give every float a label, then reference it from the paragraph that discusses it.
 
+## Personal action plans (LaTeX)
+
+Each team member writes their **own** action plan. Plans live in `personal/<name>/`, which is git-ignored (local to you; back it up yourself).
+
+```bash
+make new-plan NAME=angel AUTHOR="Angel Eduardo Luna" ID=A00842657   # copy the template
+make personal                                                       # build every personal plan
+make watch DOC=personal/angel                                       # rebuild on save
+```
+
+- Template: `docs/action-plan/template/` (builds with `make template`; edit it to change what everyone starts from).
+- `NAME` is a folder slug (`[A-Za-z0-9_-]+`); `new-plan` never overwrites an existing folder. `AUTHOR` and `ID` are optional and can be edited in `main.tex` later.
+- Output: `personal/<name>/build/main.pdf`.
+- No `../` paths: the plan's `latexmkrc` finds the repo root and exposes `docs/common` (template), `docs/manuscript/figures` (shared screenshots, use `\includegraphics{soa dig.png}`) and `bibliography.bib`.
+- The shared notes `01`-`06-*.md` in this folder are the common analysis of the feedback; the `% SOURCE:` comments in each section point to them.
+
 ## Suggested working order
 
 1. `02`: do the Typst plumbing first (caption position, unnumbered headings, labels). It is mechanical and every later edit depends on the labels.

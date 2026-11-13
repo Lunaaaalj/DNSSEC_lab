@@ -1,0 +1,34 @@
+# latexmk configuration for a personal action plan (or the template itself).
+# Works at ANY depth inside the repository: the repo root is found by walking up
+# to the directory that contains bibliography.bib.
+#
+# Build:  cd <this directory> && latexmk       (or `make personal` / `make template`)
+# Output: build/main.pdf  (all artifacts, including the PDF, go to build/)
+
+use Cwd qw(getcwd abs_path);
+
+@default_files = ('main.tex');
+
+$pdf_mode   = 1;          # pdflatex
+$out_dir    = 'build';
+$aux_dir    = 'build';
+$bibtex_use = 2;          # run biber when needed; delete .bbl only with -C
+
+$pdflatex = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# --- locate the repository root ---------------------------------------------
+my $root = getcwd();
+until (-f "$root/bibliography.bib") {
+    my $parent = abs_path("$root/..");
+    die "latexmkrc: repository root (bibliography.bib) not found above " . getcwd() . "\n"
+        if !defined $parent || $parent eq $root;
+    $root = $parent;
+}
+
+# Shared resources are found through the TeX search path, so main.tex needs no
+# relative "../" paths:  arxiv.sty, preamble.tex  -> docs/common
+#                        shared screenshots        -> docs/manuscript/figures
+#                        bibliography.bib          -> repository root
+# Trailing "//" searches subdirectories; the final ":" keeps the default paths.
+$ENV{TEXINPUTS} = "$root/docs/common//:$root/docs/manuscript/figures//:" . ($ENV{TEXINPUTS} // '');
+$ENV{BIBINPUTS} = "$root:" . ($ENV{BIBINPUTS} // '');

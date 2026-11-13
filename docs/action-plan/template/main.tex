@@ -1,0 +1,49 @@
+% ============================================================
+%  Personal action plan: addressing the review feedback of manuscript v1
+%  Build: latexmk   (see ./latexmkrc)   ->   build/main.pdf
+%  Source notes (repo-relative): docs/action-plan/*.md
+%  Template: copy with `make new-plan NAME=<you>`; do not edit paths below,
+%  the latexmkrc resolves docs/common, shared figures and bibliography.bib.
+% ============================================================
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{arxiv}                 % vendored in docs/common/ (found via TEXINPUTS)
+\input{preamble}                  % docs/common/preamble.tex (via TEXINPUTS)
+
+% ---------- Resources ----------
+% Own figures first (figures/); shared manuscript screenshots are found via
+% TEXINPUTS (docs/manuscript/figures), so no duplication and no "../" paths.
+\graphicspath{{figures/}}
+\addbibresource{bibliography.bib}  % repo root, found via BIBINPUTS
+
+% ---------- Author data (edit; or pass AUTHOR= and ID= to `make new-plan`) ----------
+\newcommand{\authorname}{Your Name}
+\newcommand{\authorid}{A00000000}
+\newcommand{\teamname}{Team 1}
+\newcommand{\coursename}{Applications of Cryptography and Cybersecurity}
+\newcommand{\institution}{Tecnol\'ogico de Monterrey, Monterrey Campus}
+
+\title{Personal Action Plan for the Revision of the BIND and DNS Analysis Report}
+\renewcommand{\headeright}{\teamname\ --- Personal action plan}
+\renewcommand{\undertitle}{\coursename\ --- \institution}
+\renewcommand{\shorttitle}{Personal Action Plan}
+
+\author{\authorname \\ \authorid}
+\date{\today}
+
+\hypersetup{pdftitle={Personal Action Plan}, pdfauthor={\authorname}}
+
+\begin{document}
+\maketitle
+
+\input{sections/01-overview-feedback}
+\input{sections/02-audit}
+\input{sections/03-captions-numbering}
+\input{sections/04-references}
+\input{sections/05-screenshot-highlights}
+\input{sections/06-conclusion-and-backmatter}
+\input{sections/07-timeline-checklist}
+
+\input{sections/08-references}         % unnumbered
+
+\end{document}
