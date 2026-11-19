@@ -7,7 +7,7 @@
 #   make personal        build every personal/<name>/ that has a main.tex
 #   make new-plan NAME=<slug> [AUTHOR="Full Name" ID=A0XXXXXXX]
 #                        create personal/<slug>/ from the action-plan template
-#   make watch DOC=personal/<slug>     rebuild on every save
+#   make watch DOC=personal/<slug>     rebuild on every save (no viewer; use your own preview)
 #   make clean           remove auxiliary files (keeps the PDFs)
 #   make distclean       remove every build/ directory
 #   make docker-build    build the image; make docker-run [TARGET=personal]
@@ -62,7 +62,7 @@ new-plan:
 	@echo "Created personal/$(NAME)/  ->  build with: make personal   (or cd personal/$(NAME) && latexmk)"
 
 watch:
-	cd $(DOC) && latexmk -pvc $(MAIN).tex
+	cd $(DOC) && latexmk -pvc -view=none $(MAIN).tex
 
 clean:
 	@for d in $(DOCS) $(PERSONAL); do (cd $$d && latexmk -c $(MAIN).tex); done
