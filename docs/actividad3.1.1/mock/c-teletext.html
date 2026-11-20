@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C · Teletext</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<style>
+:root{--veil:#000;--y:#ff0;--c:#0ff;--g:#0f0;--m:#f0f;--r:#f33;--w:#fff;--b:#2a2aff}
+body{background:#000;color:var(--w);font-family:"VT323",monospace}
+#stage{background:#000;text-transform:uppercase}
+::selection{background:var(--y);color:#000}
+:focus-visible{outline:.3cqw solid var(--y);outline-offset:.2cqw}
+#hdr{position:absolute;left:0;right:0;top:0;height:4.4cqw;background:var(--b);display:flex;justify-content:space-between;align-items:center;padding:0 2.5cqw;font:400 3cqw/1 "VT323",monospace;z-index:3}
+#hdr span:first-child{color:var(--w)}#hdr span:last-child{color:var(--y)}
+#fast{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);gap:.4cqw;padding:0 .4cqw .4cqw;z-index:3;font:400 2.3cqw/1 "VT323",monospace;color:#000}
+#fast b{font-weight:400;padding:.3cqw 1cqw;cursor:pointer}
+.hull{fill:none;stroke:var(--c);stroke-width:8;stroke-dasharray:24 24;shape-rendering:crispEdges}
+.hull-lbl{fill:var(--c);font:400 44px "VT323",monospace}
+.edge{fill:none;stroke:#3a3aff;stroke-width:12;stroke-linecap:square;shape-rendering:crispEdges}
+.edge.lit{stroke:var(--y)}.edge.leak.lit{stroke:var(--c)}
+.edge.active{stroke:var(--r);stroke-dasharray:36 24;animation:flow .9s steps(6) infinite}
+.edge.blocked{stroke:var(--r);stroke-dasharray:12 36}
+@keyframes flow{to{stroke-dashoffset:-60}}
+.body{fill:var(--w);stroke:none;shape-rendering:crispEdges}
+.node.source .body{fill:var(--c)}.node.tester .body{fill:var(--y)}.node.target .body{fill:var(--m)}
+.hole{fill:#000;shape-rendering:crispEdges}
+.lbl{fill:var(--w);font:400 46px "VT323",monospace;paint-order:stroke;stroke:#000;stroke-width:10px;text-transform:uppercase}
+.node.lit .lbl,.node.known .lbl{fill:var(--y)}
+.node.imp .body{fill:var(--g)}.node.imp .lbl{fill:var(--g)}
+.node.pwned .body{fill:var(--r)}.node.pwned .lbl{fill:var(--r)}
+.node.safe .body{fill:var(--g)}.node.safe .lbl{fill:var(--g)}
+.gate{opacity:0}.gate.show{opacity:1}.gate-bar{fill:var(--g)}.gate-lbl{fill:var(--g);font:400 40px "VT323",monospace;paint-order:stroke;stroke:#000;stroke-width:10px;text-transform:uppercase}
+.slide>*{z-index:2}
+.blk,.hd,.keys,.caps,.mail,.anns,.status,#verify,.seal{position:absolute}
+.s-cover{background:linear-gradient(90deg,#000 0,#000e 40%,#0000 72%)}
+.blk{left:3cqw;top:7cqw;width:46cqw}
+.s-cover h1{font:400 8.6cqw/.88 "VT323",monospace;color:var(--y)}
+.sub{font:400 3.1cqw/1.05 "VT323",monospace;color:var(--c);margin-top:3cqw;max-width:20ch}
+.foot{font:400 2.6cqw/1 "VT323",monospace;margin-top:3cqw;color:var(--w)}
+.hd{left:3cqw;top:6.5cqw;width:38cqw;font:400 4.4cqw/.9 "VT323",monospace;color:var(--y)}
+.keys{left:3cqw;top:17cqw;display:grid;gap:.4cqw}
+.keys li{display:flex;gap:1.6cqw;font:400 3.1cqw/1 "VT323",monospace;opacity:.4}.keys li.lit{opacity:1}
+.keys b{font-weight:400;color:var(--y)}.keys span{color:var(--w)}
+.caps{left:3cqw;bottom:6.5cqw;width:35cqw;height:11cqw}
+.cap{position:absolute;inset:0;font:400 2.5cqw/1.05 "VT323",monospace;color:var(--w)}.cap b{display:block;font-weight:400;color:var(--g);margin-bottom:.5cqw;font-size:3cqw}
+.mail{left:3cqw;top:17cqw;width:37cqw;background:#000;border:.4cqw solid var(--c);padding:1cqw 1.6cqw;font:400 2.05cqw/1.05 "VT323",monospace}
+.mh b{font-weight:400;color:var(--c);margin-right:1ch}.mb{margin-top:1cqw}
+.hl{padding:0 .3cqw}.hl.on{background:var(--y);color:#000}
+.btn{display:inline-block;border:.3cqw solid var(--w);padding:0 1cqw}.btn.on{background:var(--y);color:#000;border-color:var(--y)}
+.anns{left:3cqw;top:39.5cqw;width:42cqw;height:5cqw}
+.ann{position:absolute;inset:0;font:400 2cqw/1.05 "VT323",monospace;color:var(--g)}.ann b{font-weight:400;color:var(--y)}
+.seal{left:3cqw;bottom:6.2cqw;width:42cqw;font:400 1.9cqw/1 "VT323",monospace;color:var(--g)}
+#verify{left:3cqw;top:19cqw;background:var(--r);color:#000;border:0;padding:.4cqw 1.6cqw;font:400 3.4cqw/1.1 "VT323",monospace;text-transform:uppercase}
+#verify[aria-pressed="true"]{background:var(--g)}
+.status{left:3cqw;top:27cqw;width:35cqw;font:400 2.8cqw/1.05 "VT323",monospace;color:var(--w);background:#000d}
+.status.v-on{color:var(--g)}
+#prog{display:none}
+</style></head>
+<body>
+<div id="stage"><svg class="world" id="world" aria-label="Trust graph of a fictional company"></svg>
+<div id="hdr"><span id="pg">P101 SOCIALTEXT</span><span id="pt">ACT 3.1.1</span></div>
+<div id="slides"></div><div id="prog"></div>
+<div id="fast"><b style="background:#f33" data-go="0">101 Intro</b><b style="background:#0f0" data-go="1">102 Phases</b><b style="background:#ff0" data-go="2">103 Case</b><b style="background:#0ff" data-go="3">104 Defense</b></div></div>
+<div id="notes"></div><div id="hint" style="display:none"></div>
+<script src="world.js"></script><script src="content.js"></script>
+<script>
+const names=['INTRO','PHASES','CASE','DEFENSE'];let buf='',t;
+document.addEventListener('deckchange',e=>{const n=e.detail.slide;document.getElementById('pg').textContent='P'+(101+n)+(e.detail.step?'.'+e.detail.step:'')+' SOCIALTEXT';document.getElementById('pt').textContent=names[n];
+  const p=document.getElementById('pg');p.style.opacity=.3;clearTimeout(t);t=setTimeout(()=>p.style.opacity=1,140);});
+World.init(document.getElementById('world'),{shape:'square',curve:0,cut:true});Deck.init();
+document.querySelectorAll('#fast b').forEach(b=>b.onclick=()=>Deck.go(+b.dataset.go));
+addEventListener('keydown',e=>{if(/^\d$/.test(e.key)){buf=(buf+e.key).slice(-3);if(buf.length===3&&+buf>=101&&+buf<=104){Deck.go(+buf-101);buf='';}}});
+</script>
+</body></html>

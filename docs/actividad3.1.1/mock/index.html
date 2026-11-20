@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Activity 3.1.1 · Deck style prototypes</title>
+<style>
+:root{color-scheme:dark;--bg:#202126;--ink:#ececf0;--dim:#a2a3ad;--line:#383a42}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:56px 20px 80px}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
+p{margin:0 0 12px;max-width:68ch}.dim{color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px}
+a.card{display:block;border:1px solid var(--line);border-radius:8px;padding:20px 22px;color:inherit;text-decoration:none}
+a.card:hover,a.card:focus-visible{background:#2a2b31;outline:0;border-color:#6a6c78}
+a.card b{display:block;font-size:20px;margin-bottom:4px}
+kbd{font:13px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>Activity 3.1.1 · Social engineering in pentesting<br><span class="dim" style="font-weight:400">Four deck prototypes, one shared world</span></h1>
+<p>Each prototype is a working four-slide deck with the same content: a persistent <b>trust graph</b> of a fictional company that a camera moves across, five phases revealed one key press at a time, a simulated phishing case with step-by-step annotations, and a defense toggle that cuts the attack at the edge.</p>
+<p class="dim"><kbd>←</kbd> <kbd>→</kbd> or <kbd>space</kbd> step · <kbd>N</kbd> presenter notes · <kbd>F</kbd> fullscreen · the URL keeps your place (<code>#2.3</code>). All people, domains and numbers are invented.</p>
+<div class="grid">
+  <a class="card" href="a-switchboard.html"><b>A · Switchboard</b><span class="dim">Bell System manual: telephone blue, ivory, one signal orange. Nodes are jacks, trust edges are patch cords with sag.</span></a>
+  <a class="card" href="b-casefile.html"><b>B · Case file</b><span class="dim">Manila folder, typewriter, red string. Redaction bars lift as each indicator is called out.</span></a>
+  <a class="card" href="c-teletext.html"><b>C · Teletext</b><span class="dim">Eight broadcast colours, cell type, camera cuts instead of pans. Type <kbd>101</kbd>–<kbd>104</kbd> to jump pages.</span></a>
+  <a class="card" href="d-fieldchart.html"><b>D · Field chart</b><span class="dim">Quiet editorial diagram: hairlines, direct labels, one red path. Closest to the calm of your other decks.</span></a>
+</div></main></body></html>

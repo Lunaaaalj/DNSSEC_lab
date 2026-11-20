@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A · Switchboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<style>
+:root{--veil:#0e2e62;--bg:#0e2e62;--panel:#0a2350;--ink:#f1ead6;--sig:#ff7a57;--dim:#8fa8d3;--line:#3f5f99}
+body{background:#06142b;color:var(--ink);font-family:"Barlow",sans-serif}
+#stage{background:var(--bg)}
+::selection{background:var(--sig);color:#06142b}
+:focus-visible{outline:.25cqw solid var(--sig);outline-offset:.3cqw}
+/* world: jacks and cords */
+.hull{fill:none;stroke:var(--line);stroke-width:3;stroke-dasharray:3 14;stroke-linecap:round}
+.hull-lbl{fill:var(--dim);font:700 34px "Courier Prime",monospace}
+.edge{fill:none;stroke:var(--line);stroke-width:5;stroke-linecap:round;transition:stroke .6s,stroke-width .6s,opacity .6s}
+.edge.lit{stroke:var(--ink);stroke-width:9}
+.edge.leak.lit{stroke:var(--dim);stroke-width:6;stroke-dasharray:2 16}
+.edge.active{stroke:var(--sig);stroke-width:11;stroke-dasharray:44 22;animation:flow 1.1s linear infinite}
+.edge.blocked{stroke:var(--sig);stroke-width:6;stroke-dasharray:6 20;opacity:.7}
+@keyframes flow{to{stroke-dashoffset:-66}}
+.body{fill:var(--panel);stroke:var(--dim);stroke-width:6;transition:fill .5s,stroke .5s}
+.hole{fill:#030b1b;transition:fill .5s}
+.lbl{fill:var(--dim);font:700 34px "Courier Prime",monospace;paint-order:stroke;stroke:var(--bg);stroke-width:8px;transition:fill .5s}
+.node.lit .body,.node.known .body{stroke:var(--ink)}
+.node.lit .lbl,.node.known .lbl{fill:var(--ink)}
+.node.imp .body{fill:var(--ink);stroke:var(--sig)}.node.imp .hole{fill:var(--sig)}
+.node.pwned .body{fill:var(--sig);stroke:var(--sig)}.node.pwned .lbl{fill:var(--sig)}
+.node.safe .body{stroke:var(--ink);fill:var(--panel)}.node.safe .hole{fill:var(--ink)}
+.node.target .body{stroke:var(--ink)}
+.gate{opacity:0;transition:opacity .5s}.gate.show{opacity:1}
+.gate-bar{fill:var(--sig)}.gate-lbl{fill:var(--sig);font:700 30px "Courier Prime",monospace;paint-order:stroke;stroke:var(--bg);stroke-width:8px}
+/* slides */
+.s-cover{background:linear-gradient(90deg,#0e2e62f5 0,#0e2e62e8 40%,#0e2e6200 70%)}
+.blk{position:absolute;left:5.5cqw;top:50%;transform:translateY(-52%);width:46cqw}
+.s-cover h1{font:800 9.6cqw/.86 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.005em}
+.sub{font:600 2.3cqw/1.3 "Barlow",sans-serif;color:var(--dim);margin-top:2.4cqw;max-width:26ch}
+.foot{position:absolute;left:0;top:calc(100% + 11cqw);font:400 1.45cqw "Courier Prime",monospace;color:var(--dim);white-space:nowrap}
+.hd{position:absolute;left:5.5cqw;top:4.5cqw;width:34cqw;font:800 4.4cqw/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;text-wrap:balance}
+.keys{position:absolute;left:5.5cqw;top:19cqw;display:grid;gap:.7cqw}
+.keys li{display:flex;align-items:center;gap:1.2cqw;opacity:.45;transition:opacity .5s}
+.keys li.lit{opacity:1}
+.keys b{width:3.1cqw;height:3.1cqw;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 1.9cqw/1 "Barlow Condensed",sans-serif;transition:background .4s}
+.keys li.lit b{background:var(--ink)}.keys li:not(.lit) b{background:var(--line)}
+.keys span{font:800 2.2cqw/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.caps{position:absolute;left:5.5cqw;bottom:4.5cqw;width:31cqw;height:11cqw}
+.cap{position:absolute;inset:0;font:400 1.62cqw/1.45 "Barlow",sans-serif;color:var(--ink)}
+.cap b{display:block;font:800 2.5cqw/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--sig);margin-bottom:.7cqw}
+.mail{position:absolute;left:5.5cqw;top:19cqw;width:34cqw;background:var(--ink);color:#16233d;padding:2cqw 2.4cqw;font:400 1.28cqw/1.5 "Courier Prime",monospace;box-shadow:0 1cqw 2cqw -.6cqw #0008}
+.mail p+p{margin-top:.6cqw}.mh b{display:inline-block;width:6.2cqw}.mb{margin-top:1.2cqw!important;font-family:"Barlow",sans-serif;font-size:1.45cqw}
+.hl{padding:0 .3cqw;transition:background .4s,color .4s}.hl.on{background:var(--sig);color:#06142b}
+.btn{display:inline-block;background:#16233d;color:var(--ink);padding:.6cqw 1.6cqw;font:600 1.5cqw "Barlow",sans-serif}.btn.on{background:var(--sig);color:#06142b}
+.anns{position:absolute;left:5.5cqw;top:45cqw;width:34cqw;height:6cqw}
+.ann{position:absolute;inset:0;font:400 1.6cqw/1.45 "Barlow",sans-serif}.ann b{color:var(--sig)}
+.seal{position:absolute;left:5.5cqw;bottom:3.4cqw;font:700 1.15cqw "Courier Prime",monospace;color:var(--dim);letter-spacing:.04em;max-width:36cqw}
+#verify{position:absolute;left:5.5cqw;top:20.5cqw;background:var(--ink);color:var(--bg);border:0;border-radius:99cqw;padding:1.1cqw 2.4cqw;font:800 2cqw/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.03em;transition:background .3s,color .3s}
+#verify[aria-pressed="true"]{background:var(--sig);color:#06142b}
+.status{position:absolute;left:5.5cqw;top:28.5cqw;width:31cqw;font:400 1.75cqw/1.45 "Barlow",sans-serif}
+#prog{position:absolute;right:2cqw;top:50%;transform:translateY(-50%);display:grid;gap:1cqw}
+#prog i{width:.9cqw;height:.9cqw;border-radius:50%;background:var(--line);cursor:pointer}#prog i.on{background:var(--sig)}
+</style></head>
+<body>
+<div id="stage"><svg class="world" id="world" aria-label="Trust graph of a fictional company"></svg><div id="slides"></div><div id="prog"></div></div>
+<div id="notes"></div><div id="hint">← → step · N notes · F fullscreen</div>
+<script src="world.js"></script><script src="content.js"></script>
+<script>World.init(document.getElementById('world'),{shape:'circle',curve:.55});Deck.init();</script>
+</body></html>

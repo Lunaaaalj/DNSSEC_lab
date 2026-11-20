@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>D · Field chart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<style>
+:root{--veil:#f6f6f3;--bg:#f6f6f3;--ink:#16181d;--soft:#5f646e;--line:#c9ccd2;--red:#d4001a}
+body{background:#d9dadd;color:var(--ink);font-family:"Hanken Grotesk",sans-serif}
+#stage{background:var(--bg)}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:.25cqw solid var(--red);outline-offset:.3cqw}
+.hull{fill:none;stroke:var(--line);stroke-width:3}
+.hull-lbl{fill:var(--soft);font:600 32px "Hanken Grotesk",sans-serif}
+.edge{fill:none;stroke:var(--line);stroke-width:3;transition:stroke .5s,stroke-width .5s}
+.edge.lit{stroke:var(--ink);stroke-width:5}.edge.leak.lit{stroke:var(--soft);stroke-width:3;stroke-dasharray:3 9}
+.edge.active{stroke:var(--red);stroke-width:7;stroke-dasharray:50 20;animation:flow 1.2s linear infinite}
+.edge.blocked{stroke:var(--red);stroke-width:4;stroke-dasharray:4 16}
+@keyframes flow{to{stroke-dashoffset:-70}}
+.body{fill:var(--bg);stroke:var(--soft);stroke-width:4;transition:fill .4s,stroke .4s}.hole{display:none}
+.node.lit .body,.node.known .body{fill:var(--ink);stroke:var(--ink)}
+.node.imp .body{fill:var(--bg);stroke:var(--red);stroke-width:8}
+.node.pwned .body{fill:var(--red);stroke:var(--red)}
+.node.safe .body{fill:var(--bg);stroke:var(--ink);stroke-width:8}
+.lbl{fill:var(--soft);font:600 34px "Hanken Grotesk",sans-serif;paint-order:stroke;stroke:var(--bg);stroke-width:9px}
+.node.lit .lbl,.node.known .lbl,.node.pwned .lbl{fill:var(--ink)}
+.gate{opacity:0;transition:opacity .5s}.gate.show{opacity:1}.gate-bar{fill:var(--red)}.gate-lbl{fill:var(--red);font:800 32px "Hanken Grotesk",sans-serif;paint-order:stroke;stroke:var(--bg);stroke-width:9px}
+.s-cover{background:linear-gradient(90deg,#f6f6f3 0,#f6f6f3f0 40%,#f6f6f300 66%)}
+.blk{position:absolute;left:5.5cqw;top:50%;transform:translateY(-52%);width:46cqw}
+.s-cover h1{font:800 8.6cqw/.92 "Hanken Grotesk",sans-serif;letter-spacing:-.045em}
+.sub{font:400 2.1cqw/1.35 "Hanken Grotesk",sans-serif;margin-top:2.4cqw;max-width:27ch;color:var(--soft)}
+.foot{font:600 1.4cqw "Hanken Grotesk",sans-serif;margin-top:5cqw;color:var(--soft)}
+.hd{position:absolute;left:5.5cqw;top:4.5cqw;width:33cqw;font:800 3.6cqw/1 "Hanken Grotesk",sans-serif;letter-spacing:-.035em;text-wrap:balance}
+.keys{position:absolute;left:5.5cqw;top:19cqw;display:grid;gap:.5cqw;width:30cqw}
+.keys li{display:grid;grid-template-columns:4cqw 1fr;align-items:baseline;border-top:.15cqw solid var(--ink);padding-top:.6cqw;opacity:.35;transition:opacity .4s}
+.keys li.lit{opacity:1}.keys b{font:800 2.8cqw/1 "Hanken Grotesk",sans-serif;color:var(--red);letter-spacing:-.04em}.keys span{font:800 1.9cqw/1.1 "Hanken Grotesk",sans-serif;letter-spacing:-.02em}
+.caps{position:absolute;left:5.5cqw;bottom:4.5cqw;width:30cqw;height:11cqw}
+.cap{position:absolute;inset:0;font:400 1.55cqw/1.45 "Hanken Grotesk",sans-serif}.cap b{display:block;font:800 2.3cqw/1.1 "Hanken Grotesk",sans-serif;letter-spacing:-.025em;margin-bottom:.6cqw}
+.mail{position:absolute;left:5.5cqw;top:19cqw;width:34cqw;border:.15cqw solid var(--ink);padding:1.8cqw 2.2cqw;font:400 1.28cqw/1.5 "Hanken Grotesk",sans-serif;background:var(--bg)}
+.mail p+p{margin-top:.5cqw}.mh b{display:inline-block;width:5.6cqw;font-weight:800}.mb{margin-top:1.2cqw!important}
+.hl{transition:background .4s,color .4s;text-underline-offset:.3cqw}.hl.on{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:.25cqw}
+.btn{display:inline-block;border:.15cqw solid var(--ink);padding:.5cqw 1.5cqw;font-weight:600}.btn.on{background:var(--red);color:#fff;border-color:var(--red)}
+.anns{position:absolute;left:5.5cqw;top:45cqw;width:34cqw;height:6cqw}
+.ann{position:absolute;inset:0;font:400 1.55cqw/1.45 "Hanken Grotesk",sans-serif}.ann b{color:var(--red);font-weight:800}
+.seal{position:absolute;left:5.5cqw;bottom:3.2cqw;font:600 1.15cqw "Hanken Grotesk",sans-serif;color:var(--soft);max-width:38cqw}
+#verify{position:absolute;left:5.5cqw;top:20.5cqw;background:var(--ink);color:var(--bg);border:0;padding:1cqw 2cqw;font:800 1.9cqw/1 "Hanken Grotesk",sans-serif;letter-spacing:-.02em}
+#verify[aria-pressed="true"]{background:var(--red);color:#fff}
+.status{position:absolute;left:5.5cqw;top:28.5cqw;width:30cqw;font:400 1.7cqw/1.45 "Hanken Grotesk",sans-serif}
+#prog{position:absolute;left:5.5cqw;bottom:1.8cqw;display:flex;gap:.6cqw;width:20cqw}
+#prog i{flex:1;height:.3cqw;background:var(--line);cursor:pointer}#prog i.on{background:var(--red)}
+</style></head>
+<body>
+<div id="stage"><svg class="world" id="world" aria-label="Trust graph of a fictional company"></svg><div id="slides"></div><div id="prog"></div></div>
+<div id="notes"></div><div id="hint" style="color:#16181d99;mix-blend-mode:normal">← → step · N notes · F fullscreen</div>
+<script src="world.js"></script><script src="content.js"></script>
+<script>World.init(document.getElementById('world'),{shape:'circle',curve:0});Deck.init();</script>
+</body></html>
