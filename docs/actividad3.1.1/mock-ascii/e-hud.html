@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E · Telemetry HUD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<style>
+:root{--bg:#0b0c0d;--ink:#e6e8e3;--mid:#9ea29c;--dim:#83877f;--line:#e6e8e32e;--line2:#e6e8e35c;--amb:#ffb000}
+body{background:#050506;color:var(--ink);font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+#stage{background:var(--bg)}
+::selection{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:.15cqw solid var(--ink);outline-offset:.3cqw}
+
+/* ── HUD chrome ── */
+#hud{position:absolute;inset:0;pointer-events:none;z-index:4;font-size:1.05cqw;letter-spacing:.06em;text-transform:uppercase;color:var(--mid)}
+.frame{position:absolute;inset:1.6cqw;border:.07cqw solid var(--line)}
+.cn{position:absolute;width:2.6cqw;height:2.6cqw;border:0 solid var(--ink)}
+.cn.tl{left:1.6cqw;top:1.6cqw;border-width:.16cqw 0 0 .16cqw}.cn.tr{right:1.6cqw;top:1.6cqw;border-width:.16cqw .16cqw 0 0}
+.cn.bl{left:1.6cqw;bottom:1.6cqw;border-width:0 0 .16cqw .16cqw}.cn.br{right:1.6cqw;bottom:1.6cqw;border-width:0 .16cqw .16cqw 0}
+.ro{position:absolute;left:4.5cqw;right:4.5cqw;display:flex;justify-content:space-between;gap:2cqw}
+.ro.top{top:2.5cqw}.ro.bot{bottom:2.4cqw}
+.ro b{font-weight:500;color:var(--ink)}
+.live{color:var(--ink)}.live::before{content:"";display:inline-block;width:.6cqw;height:.6cqw;border-radius:50%;background:var(--amb);margin-right:.7cqw;vertical-align:.05cqw;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.ruler{position:absolute;top:8cqw;bottom:8cqw;width:1cqw;background:repeating-linear-gradient(180deg,var(--line2) 0 .07cqw,transparent .07cqw 1.2cqw),repeating-linear-gradient(180deg,var(--ink) 0 .1cqw,transparent .1cqw 6cqw)}
+.ruler.l{left:1.6cqw;background-size:.55cqw 100%,1cqw 100%;background-repeat:no-repeat}
+.ruler.r{right:1.6cqw;background-size:.55cqw 100%,1cqw 100%;background-repeat:no-repeat;background-position:right top,right top}
+.ret{position:absolute;left:47cqw;right:4.5cqw;top:7.2cqw;bottom:6.6cqw}
+.ret i{position:absolute;width:1.4cqw;height:1.4cqw;border:0 solid var(--line2)}
+.ret i:nth-child(1){left:0;top:0;border-width:.1cqw 0 0 .1cqw}.ret i:nth-child(2){right:0;top:0;border-width:.1cqw .1cqw 0 0}
+.ret i:nth-child(3){left:0;bottom:0;border-width:0 0 .1cqw .1cqw}.ret i:nth-child(4){right:0;bottom:0;border-width:0 .1cqw .1cqw 0}
+.ret .lab{position:absolute;left:2cqw;top:-.55cqw;background:var(--bg);padding:0 .6cqw;color:var(--dim)}
+.ret .scan{position:absolute;left:0;right:0;height:.07cqw;background:linear-gradient(90deg,transparent,var(--line2) 20%,var(--line2) 80%,transparent);animation:scan 7s linear infinite}
+@keyframes scan{from{top:0}to{top:100%}}
+.ret .xh{position:absolute;left:50%;top:50%;width:1.6cqw;height:1.6cqw;translate:-50% -50%;background:linear-gradient(var(--line2),var(--line2)) center/100% .07cqw no-repeat,linear-gradient(var(--line2),var(--line2)) center/.07cqw 100% no-repeat}
+.meter{position:absolute;left:4.5cqw;bottom:5.2cqw;width:37cqw;height:.3cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:.4cqw}
+.meter span{background:var(--line)}.meter span.on{background:var(--ink)}
+
+/* ── slide content ── */
+.cmd{position:absolute;left:4.5cqw;top:6.4cqw;font-size:1.15cqw;letter-spacing:.06em;color:var(--dim);text-transform:uppercase}
+.cmd::before{content:"cmd ";color:var(--mid)}
+.s-cover h1{position:absolute;left:4.5cqw;top:11cqw;font:500 6.8cqw/.94 "Geist Mono",monospace;text-transform:uppercase;letter-spacing:-.045em}
+.s-cover .sub{position:absolute;left:4.5cqw;top:27.5cqw;width:34cqw;font:300 1.9cqw/1.45 "Geist Mono",monospace;color:var(--mid)}
+.s-cover .foot{position:absolute;left:4.5cqw;bottom:7cqw;font-size:1.15cqw;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.hd{position:absolute;left:4.5cqw;top:9.6cqw;width:38cqw;font:500 3.3cqw/1.02 "Geist Mono",monospace;text-transform:uppercase;letter-spacing:-.04em;text-wrap:balance}
+.keys{position:absolute;left:4.5cqw;top:20cqw;width:37cqw;display:grid;font-size:1.45cqw;letter-spacing:.04em;text-transform:uppercase}
+.keys li{display:grid;grid-template-columns:3.4cqw 1fr auto;align-items:center;padding:.55cqw .8cqw;margin:0 -.8cqw;border-top:.07cqw solid var(--line);color:var(--dim);transition:background .4s,color .4s}
+.keys li:last-child{border-bottom:.07cqw solid var(--line)}
+.keys li.lit{color:var(--mid)}.keys li.on{background:var(--ink);color:var(--bg)}
+.keys b{font-weight:500}.keys b::before{content:"P"}
+.keys li::after{content:"--";font-size:1.05cqw;letter-spacing:.08em}
+.keys li.lit::after{content:"done"}.keys li.on::after{content:"live"}
+.caps{position:absolute;left:4.5cqw;bottom:7.6cqw;width:36cqw;height:8.6cqw}
+.cap{position:absolute;inset:0;font:300 1.6cqw/1.5 "Geist Mono",monospace}
+.mail{position:absolute;left:4.5cqw;top:17.8cqw;width:38cqw;border:.07cqw solid var(--line2);background:var(--bg);padding:1.3cqw 1.6cqw 1.5cqw;font:300 1.28cqw/1.6 "Geist Mono",monospace}
+.mail::before{content:"intercept · phish-001.eml · synthetic";display:block;font:400 .95cqw/1 "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:1cqw}
+.mh b{font-weight:500;color:var(--mid);display:inline-block;width:6.4cqw}.mb{margin-top:.8cqw}
+.hl{padding:0 .2cqw;transition:background .35s,color .35s}.hl.on{background:var(--ink);color:var(--bg)}
+.btn{display:inline-block;border:.07cqw solid var(--line2);padding:.1cqw 1.2cqw}
+.anns{position:absolute;left:4.5cqw;top:41.6cqw;width:38cqw;height:5.6cqw}
+.ann{position:absolute;inset:0;font:300 1.45cqw/1.5 "Geist Mono",monospace}.ann b{font-weight:500}
+.seal{position:absolute;left:4.5cqw;bottom:7cqw;font-size:1cqw;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+#verify{position:absolute;left:4.5cqw;top:20cqw;background:none;color:var(--ink);border:.1cqw solid var(--ink);padding:.8cqw 1.6cqw;font:500 1.45cqw/1 "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase;transition:background .3s,color .3s}
+#verify:hover{background:#e6e8e31a}
+#verify[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.status{position:absolute;left:4.5cqw;top:26.4cqw;width:35cqw;font:300 1.7cqw/1.5 "Geist Mono",monospace}
+</style></head>
+<body>
+<div id="stage">
+  <canvas id="ascii" aria-hidden="true"></canvas>
+  <div id="slides"></div>
+  <div id="hud" aria-hidden="true">
+    <div class="frame"></div><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i>
+    <div class="ruler l"></div><div class="ruler r"></div>
+    <div class="ro top"><span><b>act 3.1.1</b> / social engineering</span><span id="ro-pos">slide 01/04</span><span id="ro-t" class="live">t+00:00.0</span></div>
+    <div class="ret"><i></i><i></i><i></i><i></i><span class="lab" id="ro-scn">view-01 · cover</span><div class="scan"></div><div class="xh"></div></div>
+    <div class="meter" id="meter"><span></span><span></span><span></span><span></span></div>
+    <div class="ro bot"><span id="ro-stats">fps -- · glyphs ---- · grid ---×--</span><span>synthetic data · authorized exercise</span></div>
+  </div>
+</div>
+<div id="notes"></div>
+<script src="term.js"></script><script src="content.js"></script>
+<script>
+const lv=['#3c3f3c','#555955','#737872','#949993','#bfc3bc','#e6e8e3'];
+Ascii.init(document.getElementById('ascii'),{font:'"Geist Mono",monospace',cell:1.15,unit:.84,inset:[.14,.13,.035],ramp:' .:-=+*#%',color:(a,acc)=>acc?'#ffb000':lv[Math.min(5,Math.floor(a*6))]});
+let since=performance.now();const pad=(n,w)=>String(n).padStart(w,'0');
+document.addEventListener('deckchange',e=>{
+  const s=Deck.slides[e.detail.slide],n=+s.dataset.steps||0;since=performance.now();
+  document.getElementById('ro-pos').textContent=`slide ${pad(e.detail.slide+1,2)}/${pad(Deck.slides.length,2)}`+(n?` · step ${e.detail.step}/${n}`:'');
+  [...document.getElementById('meter').children].forEach((m,k)=>m.classList.toggle('on',k<=e.detail.slide));
+});
+setInterval(()=>{
+  const t=(performance.now()-since)/1000,S=Ascii.stats;
+  document.getElementById('ro-t').textContent=`t+${pad(Math.floor(t/60),2)}:${pad(Math.floor(t%60),2)}.${Math.floor(t*10)%10}`;
+  document.getElementById('ro-scn').textContent=`view-01 · ${S.scene}`;
+  document.getElementById('ro-stats').textContent=`fps ${pad(S.fps,2)} · glyphs ${pad(S.glyphs,4)} · grid ${S.cols}×${S.rows}`;
+},100);
+Deck.init();
+</script>
+</body></html>

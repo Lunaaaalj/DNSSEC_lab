@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Activity 3.1.1 · Terminal deck prototypes</title>
+<style>
+:root{color-scheme:dark;--bg:#16171a;--ink:#e8e8ea;--dim:#a2a3ad;--line:#33353c}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 ui-monospace,Menlo,monospace}
+main{max-width:1040px;margin:0 auto;padding:56px 20px 80px}
+h1{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 14px;letter-spacing:-.02em}
+p{margin:0 0 12px;max-width:72ch}.dim{color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+a.card{display:block;border:1px solid var(--line);border-radius:6px;padding:18px 20px;color:inherit;text-decoration:none}
+a.card:hover,a.card:focus-visible{background:#202227;outline:0;border-color:#6a6c78}
+a.card b{display:block;font-size:18px;margin-bottom:6px}
+kbd{font:13px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+ul{padding-left:1.2em;color:var(--dim);max-width:72ch}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>Activity 3.1.1 · Social engineering<br><span class="dim" style="font-weight:400">Five terminals, one set of ASCII animations</span></h1>
+<p>Every prototype runs the same four slides and the same live ASCII scenes, drawn character by character on a canvas. Only the terminal around them changes.</p>
+<ul>
+<li>Cover: a bust assembles from characters, with a glowing keyhole where trust lives.</li>
+<li>Phases (press → five times): radar sweep over open sources → a forged IT badge decoding → the message in flight → a key opening the lock → the lock closing with the controls typed out.</li>
+<li>Case: packet stream behind the simulated email, with indicators flagged one step at a time.</li>
+<li>Between slides and phases, the old scene dissolves into the new one cell by cell, with a short glitch band only where there is ink; slide text fades out softly and the new text rises in a staggered sequence.</li>
+<li>Defense: press the toggle and a wall builds; the same message shatters instead of opening the lock.</li>
+</ul>
+<p class="dim"><kbd>←</kbd> <kbd>→</kbd> <kbd>space</kbd> step · <kbd>N</kbd> notes · <kbd>F</kbd> fullscreen · URL keeps your place. All people, domains and results are synthetic.</p>
+<div class="grid">
+  <a class="card" href="a-phosphor.html"><b>A · Phosphor</b><span class="dim">VT220 green CRT: scanlines, glow, inverse-video menu. The classic, done properly.</span></a>
+  <a class="card" href="b-tmux.html"><b>B · tmux session</b><span class="dim">Modern split terminal: content pane and an animation pane, status bar tabs as slide nav, prompt typed on entry.</span></a>
+  <a class="card" href="c-bbs.html"><b>C · ANSI BBS</b><span class="dim">1990s bulletin board: 16-colour VGA, block shading, colour-cycling accents. Loudest and most memorable.</span></a>
+  <a class="card" href="d-teletype.html"><b>D · Teletype</b><span class="dim">Hard-copy terminal on green-bar tractor paper: each scene prints line by line, red ribbon for emphasis. The light option for bright rooms.</span></a>
+  <a class="card" href="e-hud.html" style="grid-column:1/-1"><b>E · Telemetry HUD</b><span class="dim">Mostly monochrome instrument display: thin frame, corner brackets, tick rulers, a reticle around the animation and live readouts (time on slide, frame rate, glyph count, grid). One amber reserved for the live indicator and the attack’s key moments.</span></a>
+</div></main></body></html>
