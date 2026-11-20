@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist mono",
+        "createdAt": "2026-11-20T03:36:25.493Z",
+        "reason": "impeccable: committed telemetry-HUD/terminal direction is intentionally a single monospace face"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "docs/actividad3.1.1/index.html"
+        ],
+        "createdAt": "2026-11-20T03:36:25.518Z",
+        "reason": "impeccable: HUD instrument tick-rulers are an intentional motif of this surface"
+      }
+    ]
+  }
+}
