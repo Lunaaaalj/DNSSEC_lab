@@ -1,0 +1,9 @@
+$ tshark -r captura_recursivo_dnssec.pcapng -Y 'dns.qry.type == 48 && dns.flags.response == 0 && ip.dst != 172.30.0.200'
+    5 0.001948279  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0xb398 DNSKEY <Root> OPT
+    9 0.002581817  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0x3188 DNSKEY <Root> OPT
+   14 0.003556144  172.30.0.50 → 172.30.0.50  DNS 110 Standard query 0x51ab DNSKEY beta.signed OPT
+   16 0.004287431  172.30.0.40 → 172.30.0.40  DNS 105 Standard query 0x76ce DNSKEY signed OPT
+
+$ tshark -r captura_recursivo_sin_dnssec.pcapng -Y 'dns.qry.type == 48 && dns.flags.response == 0 && ip.dst != 172.30.0.100'
+   33 1.262143972  172.30.0.40 → 172.30.0.40  DNS 105 Standard query 0x2935 DNSKEY signed OPT
+

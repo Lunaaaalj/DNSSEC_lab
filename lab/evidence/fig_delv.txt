@@ -1,0 +1,10 @@
+$ delv @172.30.0.200 -a lab/v2/anchor.conf.delv www.beta.signed A
+; fully validated
+www.beta.signed.	85714	IN	A	172.30.0.50
+www.beta.signed.	85714	IN	RRSIG	A 13 3 86400 20261222182250 20261122182250 40382 
+beta.signed. ehcEQaai5hWRMZJXx+F2FwVX3nzImmpMCgyfz+95yWCOpVCoup5ltg1n 
+exiaGy9bAZT/E+cIregkdt1ZSUuoDg==
+
+$ delv @172.30.0.200 -a lab/v2/anchor.conf.delv www.gamma.signed A
+; unsigned answer
+www.gamma.signed.	86292	IN	A	172.30.0.60

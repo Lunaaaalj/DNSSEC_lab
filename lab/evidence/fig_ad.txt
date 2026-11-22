@@ -1,0 +1,9 @@
+$ tshark -r captura_recursivo_dnssec.pcapng -Y 'dns.flags.authenticated == 1'
+   18 0.006184460 172.30.0.200 → 172.30.0.200 DNS 237 0x9a22 A www.beta.signed A 172.30.0.50 RRSIG OPT
+   55 0.039954034 172.30.0.200 → 172.30.0.200 DNS 469 0x5d72 DNSKEY signed DNSKEY DNSKEY RRSIG RRSIG OPT
+   57 0.046928530 172.30.0.200 → 172.30.0.200 DNS 260 0x58ff DS beta.signed DS RRSIG OPT
+   61 0.055557016 172.30.0.200 → 172.30.0.200 DNS 638 0x0e25 No such name A nx.beta.signed SOA ns.beta.signed RRSIG RR
+   63 0.062180807 172.30.0.200 → 172.30.0.200 DNS 434 0x6e99 DS gamma.signed SOA ns.signed RRSIG RRSIG NSEC3 OPT
+
+$ tshark -r captura_recursivo_sin_dnssec.pcapng -Y 'dns.flags.authenticated == 1'
+(no packets)

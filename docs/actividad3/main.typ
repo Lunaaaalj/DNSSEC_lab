@@ -230,7 +230,7 @@ dnssec-verify -o <zone> db.<zone>.signed
 `dnssec-verify` reported every signed zone as fully signed, with one active KSK and one active ZSK. The root went from 226 bytes
 (`db.root.orig`) to 3754 bytes (`db.root.signed`), and it now contains `DNSKEY`, `RRSIG`, `NSEC3`, `NSEC3PARAM` and the `DS` for `signed.`.
 
-#evidencia([`named-checkzone` and `dnssec-verify` output for the three signed zones], [Verification of the signed zones.])
+#captura("img/fig_checkzone.png", [`named-checkzone` on the four zones and `dnssec-verify` on the three signed ones (rendered from `lab/evidence/fig_checkzone.txt`).], "fig:check")
 
 = Validating vs. Non-validating Resolver
 
@@ -270,11 +270,13 @@ which has no `DS` in the root.
 ) <tab:trafico>
 
 The validating resolver sends more queries because it must fetch and check the keys of every zone on the path (the root, `signed.`
-and `beta.signed.`); the `DNSKEY` count (4 vs. 1) shows it. We did not analyze why the `NS` queries are also more numerous.
+and `beta.signed.`); the `DNSKEY` count (4 vs. 1) shows it. The `NS` queries also differ (12 from `.200`, 8 from `.100`). The queries for `signed`, `beta.signed`, `gamma.signed` and `alpha.unsigned` are the same in both captures (one each); the difference is in the root `NS` set (`.`), queried seven times by `.200` and twice by `.100` (@fig:ns), while `.100` asked for `unsigned` twice and `.200` once. We did not test why the validating resolver refreshes the root `NS` set more often; a possible cause is that it re-primes the root while it fetches keys, but we did not confirm it.
 
-#evidencia([Wireshark with filter `dns.flags.authenticated == 1` on the `.200` capture], [Responses with the `AD` flag.])
-#evidencia([Wireshark with filter `dns.qry.type == 48` on both captures], [`DNSKEY` queries of each resolver.])
-#evidencia([`delv @172.30.0.200 -a anchor.conf www.beta.signed` showing `fully validated`], [Validation with `delv`.])
+#captura("img/fig_ns.png", [Queries for the root `NS` set sent to the root server by each resolver (`dns.qry.type == 2`).], "fig:ns", w: 100%)
+
+#captura("img/fig_ad.png", [TShark with display filter `dns.flags.authenticated == 1`: five responses with `AD` from `.200` and none from `.100`.], "fig:ad", w: 100%)
+#captura("img/fig_dnskey.png", [`DNSKEY` queries sent by each resolver (`dns.qry.type == 48`, client queries excluded): four from `.200`, one from `.100`.], "fig:dnskey", w: 100%)
+#captura("img/fig_delv.png", [`delv` through `recursive2` with the private trust anchor: `www.beta.signed` is _fully validated_ and `www.gamma.signed` is an _unsigned answer_.], "fig:delv", w: 85%)
 
 == Tampering test
 
@@ -298,13 +300,47 @@ again with `NOERROR` and `AD`.
 
 = Preliminary Findings and Pending Work
 
-- The chain root $->$ `signed` $->$ `beta` validates; `delv` reports it as fully validated (screenshot pending).
+- The chain root $->$ `signed` $->$ `beta` validates; `delv` reports it as fully validated (@fig:delv).
 - `gamma.signed` and the Activity 2 subtree are insecure by design, and the validating resolver accepts them without `AD`.
 - The only observable differences between the resolvers are the `AD` flag, extra key-fetching traffic and the behavior under bogus data.
-- #todo[Wireshark screenshots for the figures above.]
-- #todo[Explain the higher number of `NS` queries from `recursive2` (not analyzed).]
-- #todo[Individual conclusions, CRediT and AI declaration, as in Activity 2.]
+- The figures are terminal renderings of real command output (TShark, `delv`, BIND tools), produced by `lab/scripts/70-figures.sh` from the saved captures. Wireshark screenshots of the same captures can replace them if the course requires the graphical tool.
+- #todo[Each member writes their individual conclusion and CRediT table (below).]
 - *Limitation:* signatures were generated on 2026-11-22 and are valid for 30 days (default of `dnssec-signzone`); there is no automatic re-signing, so the lab stops validating after that.
+
+= Declaration of AI Use
+
+#todo[Draft written from what happened in the session; the team must review and confirm it before delivery.]
+
+The team used Claude Code (Anthropic) @claude during this activity [models Sonnet 5.5 and Opus 5.5, November 2026]. This is how it was used:
+
+- *Planning.* It read the report of Activity 2 and proposed the tree, the addressing and the order of the steps, including the choice of algorithm and NSEC3 parameters, which the team approved.
+- *Laboratory files.* It wrote the BIND configuration files, the zone files and the shell scripts in `lab/` (signing, installation, start-up, tests, tampering test, figures).
+- *Running and diagnosing.* It ran the signing and analysis commands on the team's machine and read the outputs. The commands that need `sudo` (installing packages, assigning addresses, starting `named`) were run by a team member. While doing so it found and fixed a bug in its own signing script (duplicate root keys) and repeated the captures afterwards.
+- *Report.* It drafted this document and the tables from the saved outputs. We checked the numbers against `lab/evidence/`.
+
+The traffic captures and `dig`/`delv` outputs come from our own runs. The explanation of the extra root `NS` queries is marked as unconfirmed.
+
+= Individual conclusions and CRediTs
+
+== Angel Eduardo Luna
+
+#todo[Individual conclusion (own words) and CRediT roles with the concrete contribution behind each one.]
+
+== Jannette Cristina Flores Rodríguez
+
+#todo[Individual conclusion (own words) and CRediT roles with the concrete contribution behind each one.]
+
+== Montserrat Rodríguez Ramírez
+
+#todo[Individual conclusion (own words) and CRediT roles with the concrete contribution behind each one.]
+
+== Carolina Sarahí Sánchez Meneses
+
+#todo[Individual conclusion (own words) and CRediT roles with the concrete contribution behind each one.]
+
+== Elías Alejandro Corral Rodríguez
+
+#todo[Individual conclusion (own words) and CRediT roles with the concrete contribution behind each one.]
 
 #bibliography(
   bytes(
@@ -333,6 +369,12 @@ rfc9276:
   type: web
   title: 'RFC 9276, Guidance for NSEC3 Parameter Settings'
   url: https://datatracker.ietf.org/doc/rfc9276/
+claude:
+  type: web
+  title: Claude (large language model)
+  author: Anthropic
+  url: https://claude.ai
+  date: 2026
 bindarm:
   type: web
   title: BIND 9 Administrator Reference Manual

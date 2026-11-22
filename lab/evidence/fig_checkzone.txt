@@ -1,0 +1,39 @@
+$ named-checkzone . lab/v2/root/zones/db.root.signed
+zone ./IN: loaded serial 2026112202 (DNSSEC signed)
+OK
+$ named-checkzone signed lab/v2/signed/zones/db.signed.signed
+zone signed/IN: loaded serial 2026112202 (DNSSEC signed)
+OK
+$ named-checkzone beta.signed lab/v2/beta/zones/db.beta.signed.signed
+zone beta.signed/IN: loaded serial 2026112202 (DNSSEC signed)
+OK
+$ named-checkzone gamma.signed lab/v2/gamma/zones/db.gamma.signed
+zone gamma.signed/IN: loaded serial 2026112201
+OK
+
+$ dnssec-verify -o . lab/v2/root/zones/db.root.signed
+Loading zone '.' from file 'lab/v2/root/zones/db.root.signed'
+
+Verifying the zone using the following algorithms:
+- ECDSAP256SHA256
+Zone fully signed:
+Algorithm: ECDSAP256SHA256: KSKs: 1 active, 0 stand-by, 0 revoked
+                            ZSKs: 1 active, 0 stand-by, 0 revoked
+
+$ dnssec-verify -o signed lab/v2/signed/zones/db.signed.signed
+Loading zone 'signed' from file 'lab/v2/signed/zones/db.signed.signed'
+
+Verifying the zone using the following algorithms:
+- ECDSAP256SHA256
+Zone fully signed:
+Algorithm: ECDSAP256SHA256: KSKs: 1 active, 0 stand-by, 0 revoked
+                            ZSKs: 1 active, 0 stand-by, 0 revoked
+
+$ dnssec-verify -o beta.signed lab/v2/beta/zones/db.beta.signed.signed
+Loading zone 'beta.signed' from file 'lab/v2/beta/zones/db.beta.signed.signed'
+
+Verifying the zone using the following algorithms:
+- ECDSAP256SHA256
+Zone fully signed:
+Algorithm: ECDSAP256SHA256: KSKs: 1 active, 0 stand-by, 0 revoked
+                            ZSKs: 1 active, 0 stand-by, 0 revoked
