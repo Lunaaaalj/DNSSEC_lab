@@ -35,6 +35,7 @@ sign root   .           db.root        db.root.signed
 
 # Trust anchor for the validating resolver: DS of the root KSK (static-ds)
 read -r _ _ _ tag alg dig hex < <(grep -m1 ' DS ' root/zones/dsset-.)
+hex=${hex// /}
 cat > recursive2/trust-anchor.conf <<TA
 trust-anchors {
     . static-ds $tag $alg $dig "$hex";
