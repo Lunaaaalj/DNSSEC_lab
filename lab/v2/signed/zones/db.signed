@@ -1,0 +1,11 @@
+; signed/zones/db.signed  (unsigned source; DS for beta appended by 10-sign.sh)
+$TTL 86400
+@ IN SOA ns.signed. admin.signed. ( 2026112201 3600 900 604800 86400 )
+@ IN NS ns.signed.
+ns.signed. IN A 172.30.0.40
+; Delegation to beta.signed (secure: DS appended at signing time)
+beta.signed. IN NS ns.beta.signed.
+ns.beta.signed. IN A 172.30.0.50
+; Delegation to gamma.signed (insecure: no DS)
+gamma.signed. IN NS ns.gamma.signed.
+ns.gamma.signed. IN A 172.30.0.60

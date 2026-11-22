@@ -1,0 +1,17 @@
+$ tshark -r captura_recursivo_dnssec.pcapng -Y 'dns.qry.type == 2 && dns.flags.response == 0 && ip.dst == 172.30.0.10'
+    2 0.001466907  172.30.0.10 → 172.30.0.10  DNS 82 Standard query 0xd0aa NS <Root> OPT
+    3 0.001520574  172.30.0.10 → 172.30.0.10  DNS 89 Standard query 0x9960 NS signed OPT
+   28 0.030206180  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0x70ef NS <Root> OPT
+   29 0.030225388  172.30.0.10 → 172.30.0.10  DNS 107 Standard query 0x1168 NS unsigned OPT
+   32 0.030340429  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0xcb06 NS <Root> OPT
+   38 0.030616469  172.30.0.10 → 172.30.0.10  DNS 124 Standard query 0xf327 NS <Root> OPT
+   46 0.031123049  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0xe648 NS <Root> OPT
+   49 0.031213840  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0xb5ed NS <Root> OPT
+   51 0.031297673  172.30.0.10 → 172.30.0.10  DNS 124 Standard query 0xf328 NS <Root> OPT
+
+$ tshark -r captura_recursivo_sin_dnssec.pcapng -Y 'dns.qry.type == 2 && dns.flags.response == 0 && ip.dst == 172.30.0.10'
+    5 1.224238091  172.30.0.10 → 172.30.0.10  DNS 82 Standard query 0x90ab NS <Root> OPT
+    6 1.224283424  172.30.0.10 → 172.30.0.10  DNS 89 Standard query 0x4dee NS signed OPT
+   21 1.252171328  172.30.0.10 → 172.30.0.10  DNS 98 Standard query 0x3b36 NS <Root> OPT
+   22 1.252189120  172.30.0.10 → 172.30.0.10  DNS 107 Standard query 0x3214 NS unsigned OPT
+   25 1.252618700  172.30.0.10 → 172.30.0.10  DNS 107 Standard query 0xa2c0 NS unsigned OPT

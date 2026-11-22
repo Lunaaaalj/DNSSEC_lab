@@ -1,0 +1,77 @@
+### dig @172.30.0.200 www.beta.signed A +dnssec
+
+; <<>> DiG 9.20.30-1-Debian <<>> @172.30.0.200 www.beta.signed A +dnssec +multi
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 11474
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: 9cd522ecd73cec6a010000006b03415bd73a7d83c02008fc (good)
+;; QUESTION SECTION:
+;www.beta.signed.	IN A
+
+;; Query time: 3 msec
+;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
+;; WHEN: Sun Nov 22 13:24:11 CST 2026
+;; MSG SIZE  rcvd: 72
+
+
+### dig @172.30.0.200 www.beta.signed A +dnssec +cd
+
+; <<>> DiG 9.20.30-1-Debian <<>> @172.30.0.200 www.beta.signed A +dnssec +cd +multi
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58481
+;; flags: qr rd ra cd; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: facacb51c5193a54010000006b03415b580bad714f9f67f8 (good)
+;; QUESTION SECTION:
+;www.beta.signed.	IN A
+
+;; ANSWER SECTION:
+www.beta.signed.	86400 IN A 172.30.0.66
+www.beta.signed.	86400 IN RRSIG A 13 3 86400 (
+				20261222182250 20261122182250 40382 beta.signed.
+				ehcEQaai5hWRMZJXx+F2FwVX3nzImmpMCgyfz+95yWCO
+				pVCoup5ltg1nexiaGy9bAZT/E+cIregkdt1ZSUuoDg== )
+
+;; Query time: 0 msec
+;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
+;; WHEN: Sun Nov 22 13:24:11 CST 2026
+;; MSG SIZE  rcvd: 195
+
+
+### dig @172.30.0.100 www.beta.signed A +dnssec
+
+; <<>> DiG 9.20.30-1-Debian <<>> @172.30.0.100 www.beta.signed A +dnssec +multi
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 14578
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: 1826185786eb62bc010000006b03415b6a5a60e0a6ea2031 (good)
+;; QUESTION SECTION:
+;www.beta.signed.	IN A
+
+;; ANSWER SECTION:
+www.beta.signed.	86400 IN A 172.30.0.66
+www.beta.signed.	86400 IN RRSIG A 13 3 86400 (
+				20261222182250 20261122182250 40382 beta.signed.
+				ehcEQaai5hWRMZJXx+F2FwVX3nzImmpMCgyfz+95yWCO
+				pVCoup5ltg1nexiaGy9bAZT/E+cIregkdt1ZSUuoDg== )
+
+;; Query time: 0 msec
+;; SERVER: 172.30.0.100#53(172.30.0.100) (UDP)
+;; WHEN: Sun Nov 22 13:24:11 CST 2026
+;; MSG SIZE  rcvd: 195
+
+
