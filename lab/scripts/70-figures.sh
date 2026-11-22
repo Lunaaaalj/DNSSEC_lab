@@ -36,7 +36,7 @@ cat > "$I/term.typ" <<'T'
 #set text(font: "DejaVu Sans Mono", size: 8pt, fill: rgb("#d8dee9"))
 #raw(read(f), block: true)
 T
-for n in checkzone ad dnskey delv ns; do
+for n in checkzone delv; do
   typst compile --root / --input f="$E/fig_$n.txt" --ppi 200 "$I/term.typ" "$I/fig_$n.png" 2>&1 | head -3
 done
 rm -f "$I/term.typ"; ls -l "$I"

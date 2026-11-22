@@ -272,10 +272,13 @@ which has no `DS` in the root.
 The validating resolver sends more queries because it must fetch and check the keys of every zone on the path (the root, `signed.`
 and `beta.signed.`); the `DNSKEY` count (4 vs. 1) shows it. The `NS` queries also differ (12 from `.200`, 8 from `.100`). The queries for `signed`, `beta.signed`, `gamma.signed` and `alpha.unsigned` are the same in both captures (one each); the difference is in the root `NS` set (`.`), queried seven times by `.200` and twice by `.100` (@fig:ns), while `.100` asked for `unsigned` twice and `.200` once. We did not test why the validating resolver refreshes the root `NS` set more often; a possible cause is that it re-primes the root while it fetches keys, but we did not confirm it.
 
-#captura("img/fig_ns.png", [Queries for the root `NS` set sent to the root server by each resolver (`dns.qry.type == 2`).], "fig:ns", w: 100%)
+#captura("img/05_Wireshark_NS_raiz_recursivo_dnssec.png", [`NS` queries sent by `recursive2` to the root server (`172.30.0.10`). Highlighted in red: the seven queries for `<Root>`; the other two rows are `signed` and `unsigned` (9 packets displayed in total).], "fig:ns", w: 100%)
+#captura("img/06_Wireshark_NS_raiz_recursivo_sin_dnssec.png", [Same filter for `recursive1`. Highlighted in red: the two queries for `<Root>` and the two for `unsigned` (5 packets displayed in total).], "fig:ns2", w: 100%)
 
-#captura("img/fig_ad.png", [TShark with display filter `dns.flags.authenticated == 1`: five responses with `AD` from `.200` and none from `.100`.], "fig:ad", w: 100%)
-#captura("img/fig_dnskey.png", [`DNSKEY` queries sent by each resolver (`dns.qry.type == 48`, client queries excluded): four from `.200`, one from `.100`.], "fig:dnskey", w: 100%)
+#captura("img/01_Wireshark_AD_recursivo_dnssec.png", [`captura_recursivo_dnssec.pcapng` (`recursive2`) in Wireshark with the filter `dns.flags.authenticated == 1`. Highlighted in red: the filter, the five responses that carry the `AD` flag (`www.beta.signed`, the `signed` `DNSKEY`, the `beta.signed` `DS`, the `nx.beta.signed` NXDOMAIN and the `gamma.signed` `DS`) and the counter `Displayed: 5`.], "fig:ad", w: 100%)
+#captura("img/02_Wireshark_AD_recursivo_sin_dnssec.png", [Same filter on `captura_recursivo_sin_dnssec.pcapng` (`recursive1`). Highlighted in red: the filter and `Displayed: 0`; the non-validating resolver never sets `AD`.], "fig:ad2", w: 100%)
+#captura("img/03_Wireshark_DNSKEY_recursivo_dnssec.png", [`DNSKEY` queries sent by `recursive2` to other servers (client queries excluded by `ip.dst != 172.30.0.200`). Highlighted in red: the filter, the four queries (root twice, `beta.signed` and `signed`) and `Displayed: 4`.], "fig:dnskey", w: 100%)
+#captura("img/04_Wireshark_DNSKEY_recursivo_sin_dnssec.png", [Same filter for `recursive1` (`ip.dst != 172.30.0.100`). Highlighted in red: the filter, the only query (`signed`, requested by the client) and `Displayed: 1`.], "fig:dnskey2", w: 100%)
 #captura("img/fig_delv.png", [`delv` through `recursive2` with the private trust anchor: `www.beta.signed` is _fully validated_ and `www.gamma.signed` is an _unsigned answer_.], "fig:delv", w: 85%)
 
 == Tampering test
@@ -303,7 +306,7 @@ again with `NOERROR` and `AD`.
 - The chain root $->$ `signed` $->$ `beta` validates; `delv` reports it as fully validated (@fig:delv).
 - `gamma.signed` and the Activity 2 subtree are insecure by design, and the validating resolver accepts them without `AD`.
 - The only observable differences between the resolvers are the `AD` flag, extra key-fetching traffic and the behavior under bogus data.
-- The figures are terminal renderings of real command output (TShark, `delv`, BIND tools), produced by `lab/scripts/70-figures.sh` from the saved captures. Wireshark screenshots of the same captures can replace them if the course requires the graphical tool.
+- @fig:ad, @fig:ad2, @fig:dnskey, @fig:dnskey2, @fig:ns and @fig:ns2 are Wireshark screenshots of the saved captures with the highlights drawn by `lab/scripts/80-annotate.py` (originals untouched in `docs/actividad3/img/originales/`); @fig:check and @fig:delv are renderings of real terminal output (`lab/scripts/70-figures.sh`).
 - #todo[Each member writes their individual conclusion and CRediT table (below).]
 - *Limitation:* signatures were generated on 2026-11-22 and are valid for 30 days (default of `dnssec-signzone`); there is no automatic re-signing, so the lab stops validating after that.
 
