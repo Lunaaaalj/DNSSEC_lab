@@ -21,3 +21,6 @@ build/
 
 # Individual files and tasks
 personal/
+
+# DNSSEC lab: never commit private keys
+lab/**/*.private

@@ -1,0 +1,6 @@
+; gamma/zones/db.gamma.signed  (never signed)
+$TTL 86400
+@ IN SOA ns.gamma.signed. admin.gamma.signed. ( 2026112201 3600 900 604800 86400 )
+@ IN NS ns.gamma.signed.
+ns.gamma.signed. IN A 172.30.0.60
+www IN A 172.30.0.60
