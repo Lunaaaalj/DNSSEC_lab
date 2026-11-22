@@ -10,7 +10,7 @@ sign() {  # sign <srv> <zone> <source-file> <signed-file>
   local srv=$1 zone=$2 src=$3 out=$4
   ( cd "$srv"
     mkdir -p keys
-    if ! ls keys/K"${zone}".+013+*.key >/dev/null 2>&1; then
+    if ! ls keys/K"${zone%.}".+013+*.key >/dev/null 2>&1; then
       dnssec-keygen -q -K keys -a $ALG -f KSK -n ZONE "$zone"
       dnssec-keygen -q -K keys -a $ALG        -n ZONE "$zone"
     fi

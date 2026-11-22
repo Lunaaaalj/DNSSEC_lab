@@ -4,25 +4,25 @@
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44314
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39458
 ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: 0b8424cb95ac4a14010000006b034045335f891793a7ccb7 (good)
+; COOKIE: 35bea6ec8d09323b010000006b03414f3d3aae0eb46f4003 (good)
 ;; QUESTION SECTION:
 ;www.beta.signed.	IN A
 
 ;; ANSWER SECTION:
 www.beta.signed.	86400 IN A 172.30.0.50
 www.beta.signed.	86400 IN RRSIG A 13 3 86400 (
-				20261222181428 20261122181428 40382 beta.signed.
-				+gp+7QNIXpr+duZiNUdg+AaK8OxO/6sLnIVE2hmQzitp
-				jR2nolDvmSmAsyhihraTkjBiX7LJ3tzeR0YnRxckcw== )
+				20261222182250 20261122182250 40382 beta.signed.
+				ehcEQaai5hWRMZJXx+F2FwVX3nzImmpMCgyfz+95yWCO
+				pVCoup5ltg1nexiaGy9bAZT/E+cIregkdt1ZSUuoDg== )
 
 ;; Query time: 3 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 195
 
 
@@ -32,21 +32,21 @@ www.beta.signed.	86400 IN RRSIG A 13 3 86400 (
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12552
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47978
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: 25e56c9c86988ebc010000006b0340456b56ead5a23a15fa (good)
+; COOKIE: fad948bacdbbc5a7010000006b03414f59a6cba3f7bc757c (good)
 ;; QUESTION SECTION:
 ;www.gamma.signed.	IN A
 
 ;; ANSWER SECTION:
 www.gamma.signed.	86400 IN A 172.30.0.60
 
-;; Query time: 3 msec
+;; Query time: 0 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 89
 
 
@@ -56,12 +56,12 @@ www.gamma.signed.	86400 IN A 172.30.0.60
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22594
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20272
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: 77e57d437da4935b010000006b0340453d6c3fc09b6712ba (good)
+; COOKIE: 0f1d7de08788370e010000006b03414f2e6192e72d6e8b46 (good)
 ;; QUESTION SECTION:
 ;www.alpha.unsigned.	IN A
 
@@ -70,7 +70,7 @@ www.alpha.unsigned.	86400 IN A 172.30.0.30
 
 ;; Query time: 0 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 91
 
 
@@ -80,36 +80,36 @@ www.alpha.unsigned.	86400 IN A 172.30.0.30
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 1983
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 23922
 ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: 77c792d216052348010000006b0340450705c8cc66e27661 (good)
+; COOKIE: b0a4a81393de2b2c010000006b03414f99418e269f4da8e3 (good)
 ;; QUESTION SECTION:
 ;signed.			IN DNSKEY
 
 ;; ANSWER SECTION:
-signed.			86400 IN DNSKEY	257 3 13 (
-				Idkn+KRBPg82i1Iuqgdle4+xfSRCA0dMnAQio8/PxXx9
-				ld1hzlWf3OAiyuyizFkJj8oF04vo972jxtnVjGUXBw==
-				) ; KSK; alg = ECDSAP256SHA256 ; key id = 23779
 signed.			86400 IN DNSKEY	256 3 13 (
 				M/HAlgWIB8RFRZtcJcN8w7T63d6JurJcJHszbx5sYX/d
 				LfDhHuMxaW/wgUF8JaKXv7Ft/OMdSrHY22FmuZH0Jg==
 				) ; ZSK; alg = ECDSAP256SHA256 ; key id = 41363
+signed.			86400 IN DNSKEY	257 3 13 (
+				Idkn+KRBPg82i1Iuqgdle4+xfSRCA0dMnAQio8/PxXx9
+				ld1hzlWf3OAiyuyizFkJj8oF04vo972jxtnVjGUXBw==
+				) ; KSK; alg = ECDSAP256SHA256 ; key id = 23779
 signed.			86400 IN RRSIG DNSKEY 13 1 86400 (
-				20261222181428 20261122181428 23779 signed.
-				9VWPo1d+oAE5wfMXrI6GjtepOdKyGcpquT0JaQuLe/GF
-				aiNz0NZjBPs9XnZrLf/vZdZAUE8DQweLJVTQV3GIVA== )
+				20261222182250 20261122182250 23779 signed.
+				O3qsrjhOXbhufL5NGDFhl7B8LgMJusby+/aMK0B9rKiq
+				dogoyC+X9VTTAtXe5v7pd5s30iOivkxle2TugOL+qA== )
 signed.			86400 IN RRSIG DNSKEY 13 1 86400 (
-				20261222181428 20261122181428 41363 signed.
-				rxksYKiq/1Jze5suOpPguTWbQagvd/KIYth5oJZtbW4L
-				2qDc3PI6TvizYncKnVsOTdphpvSHj8FhnT8ThUQYig== )
+				20261222182250 20261122182250 41363 signed.
+				9Btjj00mDRJ5wxIUUJyPAJdqoZBBrEONrhkDNb6DDIWV
+				/jVjBZzBK1fxVarKlAoAVKGkdHXJWMUiLbwrkv0QVw== )
 
-;; Query time: 0 msec
+;; Query time: 3 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 427
 
 
@@ -119,12 +119,12 @@ signed.			86400 IN RRSIG DNSKEY 13 1 86400 (
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 2414
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22783
 ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: 2fbe36d698b03097010000006b034045f545fe1a8b287aee (good)
+; COOKIE: e74de8e8bbf4f0e5010000006b03414f21884b11d452f015 (good)
 ;; QUESTION SECTION:
 ;beta.signed.		IN DS
 
@@ -133,13 +133,13 @@ beta.signed.		86400 IN DS 4639 13 2 (
 				E5C6C87786D640229693F762ECC11CB8D2AA21AC1FB3
 				86E792E536B23925C4BE )
 beta.signed.		86400 IN RRSIG DS 13 2 86400 (
-				20261222181428 20261122181428 41363 signed.
-				/Rc2oO6cj0UzVPBFRgOpWMI87oK1m4KnMforkXda2LMd
-				AIDuy/hHK5MM5hQO3WHMRlQMRQVrlVWNHGGMarGhOA== )
+				20261222182250 20261122182250 41363 signed.
+				RhPmjrVea0/PzXB2XYixYy06qgpXyA/hPhMyUk3cd8F4
+				jfOXJlsnF6Du4SHt9eJomPDll8ppc1sImXDTYC94lw== )
 
 ;; Query time: 0 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 218
 
 
@@ -149,12 +149,12 @@ beta.signed.		86400 IN RRSIG DS 13 2 86400 (
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 63484
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 3621
 ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 6, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: f5ae46bf580016a1010000006b0340453e96f280689a8480 (good)
+; COOKIE: adb3787cb9e4b518010000006b03414fae30fa947073a8f6 (good)
 ;; QUESTION SECTION:
 ;nx.beta.signed.		IN A
 
@@ -167,27 +167,27 @@ beta.signed.		10800 IN SOA ns.beta.signed. admin.beta.signed. (
 				86400      ; minimum (1 day)
 				)
 beta.signed.		10800 IN RRSIG SOA 13 2 86400 (
-				20261222181428 20261122181428 40382 beta.signed.
-				64ZuM5XThg/F5O2saEeyk8Uz2yWS5AZ1TLqtfsKKnM6C
-				kp9GQSmavCo7oOfe0aTfGvYToa/HwTaxtv+5SvqwJQ== )
+				20261222182250 20261122182250 40382 beta.signed.
+				a6nVrFtYPiebaeP38zgZOgDx1dRDRmMjMXGIIdrKWK3s
+				GPTuByOKlnhPQW5k+PP/b8QDgkw0x9qrQC9WTpdc/g== )
 BM35LJS4NB2420B8HF5RMBO4QE2QN8TU.beta.signed. 10800 IN RRSIG NSEC3 13 3 86400 (
-				20261222181428 20261122181428 40382 beta.signed.
-				XpP0YI/ANLqCkaTk0s/UQFFyVVmCeeiAHbBhoAMYEpcq
-				q9a/br9VRV+sWcFL/dHl8+QXUxZCtOpX1g7FDZ+lpw== )
+				20261222182250 20261122182250 40382 beta.signed.
+				2umy6URn9h4xBsnqp5OvfZbsT+A/XLAvHxLLlIa7aqHu
+				G+Y4rs1V5rR2e80eIW6KYlQxaKCJoyio21ta6P8HLw== )
 BM35LJS4NB2420B8HF5RMBO4QE2QN8TU.beta.signed. 10800 IN NSEC3 1 0 0 - (
 				GRS40AM80TEVIHGE8NBPM867AN1C8EVU
 				NS SOA RRSIG DNSKEY NSEC3PARAM )
 GRS40AM80TEVIHGE8NBPM867AN1C8EVU.beta.signed. 10800 IN RRSIG NSEC3 13 3 86400 (
-				20261222181428 20261122181428 40382 beta.signed.
-				VLaaHW8Om4Y9Jm//N1Gk+NiIx1z6R7o8QorjQsfpq08n
-				ylC1eM2lga+/DrYHa0epA8eH08IYdy9/nKbMQ5916g== )
+				20261222182250 20261122182250 40382 beta.signed.
+				HJaK/e1cYaVfmz+Wq+NO3tstz4X/HkZlXpeO+tiCLy7X
+				kisyJYnHSdSmjTyEZCejPICrf5Dgo9yTsJ+voriMYg== )
 GRS40AM80TEVIHGE8NBPM867AN1C8EVU.beta.signed. 10800 IN NSEC3 1 0 0 - (
 				6PO8VKGIFHOOJEO6TONQEBH61OUUHI1N
 				A RRSIG )
 
 ;; Query time: 0 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 596
 
 
@@ -197,12 +197,12 @@ GRS40AM80TEVIHGE8NBPM867AN1C8EVU.beta.signed. 10800 IN NSEC3 1 0 0 - (
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52630
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28313
 ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags: do; udp: 1232
-; COOKIE: 79bf58c018831904010000006b0340457ea2e04f2af516ac (good)
+; COOKIE: 4148298aa082750c010000006b03414f093601c75eee14fb (good)
 ;; QUESTION SECTION:
 ;gamma.signed.		IN DS
 
@@ -215,20 +215,20 @@ signed.			10800 IN SOA ns.signed. admin.signed. (
 				86400      ; minimum (1 day)
 				)
 signed.			10800 IN RRSIG SOA 13 1 86400 (
-				20261222181428 20261122181428 41363 signed.
-				K8EgoKpZnI1Y+JBaCfETBupM50SYOvtfbhn5+HIKb8mD
-				TJKf7IqvC2WN0eZfDcq9sauGSbsEKf1FIPD5wZaNEg== )
+				20261222182250 20261122182250 41363 signed.
+				o6kBmlj05Ll6KkJHro6e4IlmiSDG4h4inJi0zg0azr7t
+				S7gY1jSLHJH04Oly8XpzzWG5xvprVzH6Pfh6WValOA== )
 MSKU3DFSP7JOKKTDMVKI6IRTU6VVURHR.signed. 10800 IN RRSIG	NSEC3 13 2 86400 (
-				20261222181428 20261122181428 41363 signed.
-				/uNloLr6uK1IiR6XvdJTtBh917hAUz5jWCs7s9z1fkBU
-				qZXPm0g/49fAFVpulmudCDdd+rny5lEAOZNvXQ4Vbg== )
+				20261222182250 20261122182250 41363 signed.
+				MdOlmLxVYeVBqjaywleQWUbymmv8gkHYs2dI491w41uq
+				ZqmT6WCuzcFkgzIP3ESKRThYdCZ5rR433cRKbTZL5Q== )
 MSKU3DFSP7JOKKTDMVKI6IRTU6VVURHR.signed. 10800 IN NSEC3	1 0 0 - (
 				N39BNOVRI3ES62T7CCLCBLLTC037GB7V
 				NS )
 
 ;; Query time: 0 msec
 ;; SERVER: 172.30.0.200#53(172.30.0.200) (UDP)
-;; WHEN: Sun Nov 22 13:19:33 CST 2026
+;; WHEN: Sun Nov 22 13:23:59 CST 2026
 ;; MSG SIZE  rcvd: 392
 
 
